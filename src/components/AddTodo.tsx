@@ -3,7 +3,7 @@ import { Todo } from "../App"
 
 interface AddTodoProps {
     todos: Todo[];
-    setTodos: (todos: Todo[]) => void
+    setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
 }
 
 function AddTodo({todos, setTodos}: AddTodoProps) {
@@ -14,8 +14,9 @@ function AddTodo({todos, setTodos}: AddTodoProps) {
         if(todo.trim().length === 0) {
             return;
         }
-        let newId = todos?.length ? todos[todos.length - 1].id + 1 : 1;
-        setTodos([...todos, {id: newId, title: todo, status: "pending"}])
+        let newId = todos.length > 0 ? todos[todos.length - 1].id + 1 : 1;
+        let newUser: Todo ={id: newId, title: todo, status: "pending"};
+        setTodos(prev => [...prev, newUser])
         setTodo("")
     });
 
