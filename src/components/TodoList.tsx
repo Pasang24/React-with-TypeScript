@@ -8,8 +8,10 @@ interface TodoListProps {
 
 function TodoList({ todos, setTodos }: TodoListProps) {
   return (
-    <div className="flex flex-col max-w-[600px] mx-auto p-4 text-xl">
-      {todos.length === 0 && <div className="text-center font-bold">No Tasks!</div>}
+    <div className="flex flex-col gap-2 max-w-[600px] mx-auto p-4 text-xl">
+      {todos.length === 0 && (
+        <div className="text-center font-bold">No Tasks!</div>
+      )}
       {todos.map((todo) => {
         return <TodoItem todo={todo} setTodos={setTodos} />;
       })}
